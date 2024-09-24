@@ -25,12 +25,15 @@ Base.:<<(pythia::Pythia, s::String) = readString(pythia, s) ? pythia : error("Py
 Base.:<<(pythia::PythiaParallel, s::String) = readString(pythia, s) ? pythia : error("Pythia8: $s")
 
 #---Event API--------------------------------------------------------------------------------------
-Base.length(evt::Event) = Pythia8.size(evt)
+Base.length(evt::Event) = Pythia8.size(evt) |> Int64
 Base.getindex(evt::CxxWrap.CxxWrapCore.CxxRef{<:Event}, n::Int64) = evt[][n-1]
 Base.iterate(evt::Union{Event, CxxWrap.CxxWrapCore.CxxRef{<:Event}}, state=1) = state > length(evt) ? nothing : (evt[state], state+1)
 
 #---Hist API---------------------------------------------------------------------------------------
 Base.fill!(hist::Hist, x::Number) = Pythia8.fill(hist, x)
+Base.fill!(hist::Hist, x::Number, w::Number) = Pythia8.fill(hist, x, w)
+Base.fill!(hist::Hist, x::Int32) = Pythia8.fill(hist, x |> Float64) 
+Base.fill!(hist::Hist, x::Int32, w::Int32) = Pythia8.fill(hist, x |> Float64, w |> Float64)
 Base.print(hist::Hist) = print(to_string(hist))
 
 #----Callbacks-------------------------------------------------------------------------------------
@@ -72,9 +75,10 @@ const hookssignatures = Dict(
     :doVetoResonanceDecays => (CxxBool, (CxxRef{Pythia8.Event})),
     :canVetoPT => (CxxBool, ()),
     :scaleVetoPT => (Float64, ()),
-    :doVetoPT => (CxxBool, (Int32, CxxRef{Pythia8.Event})),
+    :doVetoPT => (CxxBool, (Int32, ConstCxxRef{Pythia8.Event})),
     :canVetoStep => (CxxBool, ()),
     :numberVetoStep => (CxxBool, (Int32, Int32, Int32, CxxRef{Pythia8.Event})),
+    :doVetoStep => (CxxBool, (Int32, Int32, Int32, ConstCxxRef{Pythia8.Event})),
     :canVetoMPIStep => (CxxBool, ()),
     :numberVetoMPIStep => (Int32, ()),
     :doVetoMPIStep => (Int32, (CxxRef{Pythia8.Event})),
@@ -105,17 +109,19 @@ const hookssignatures = Dict(
     :onEndHadronLevel => (CxxBool, (CxxRef{Pythia8.HadronLevel}, CxxRef{Pythia8.Event}))
 )
 function __init__(self::UserHooks)
-    println("UserHooks: __init__")
+    # create an instance of Pythia8UserHooks
     uhooks = Pythia8UserHooks!make_shared()
+    # set the hooks for each method defined by the user
     for m in methodswith(self |> typeof)
         if m.name in keys(hookssignatures)
             cb = make_callback(self, getfield(m.module, m.name), hookssignatures[m.name]...)
-            set_$(m.name)(CxxRef{Pythia8UserHooks}(uhooks[]), closure(cb)...)
+            eval(Symbol(:set_, m.name))(CxxRef{Pythia8UserHooks}(uhooks[]), closure(cb)...)
         else
-            error("Method $m.name not supported")
+            error("Method $(m.name) not supported")
         end
     end
-    self.base = uhooks[]
+    # store the object pointed by shared pointer
+    self.base = CxxRef{Pythia8UserHooks}(uhooks[]) # store the object pointed by shared pointer
     return uhooks
 end
 

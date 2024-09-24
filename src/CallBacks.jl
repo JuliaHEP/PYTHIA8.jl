@@ -58,6 +58,24 @@ function make_callback(ctx, fun, rt, args)
                     end
                 end
             )
+        elseif narg == 4
+            eval( 
+                quote
+                    function $i_callback(data::Ptr{Cvoid}, a1::$(args[1]), a2::$(args[2]), a3::$(args[3]), a4::$(args[4]))::$rt
+                        cb_data = unsafe_pointer_to_objref(data)::CallBackData{$CONTEXT}
+                        cb_data.callback(cb_data.context, a1[], a2[], a3[], a4[])
+                    end
+                end
+            )
+        elseif narg == 5
+            eval( 
+                quote
+                    function $i_callback(data::Ptr{Cvoid}, a1::$(args[1]), a2::$(args[2]), a3::$(args[3]), a4::$(args[4]), a5=$(args[5]))::$rt
+                        cb_data = unsafe_pointer_to_objref(data)::CallBackData{$CONTEXT}
+                        cb_data.callback(cb_data.context, a1[], a2[], a3[], a4[], a5[])
+                    end
+                end
+            )
         else
             error("callbacks with more than 3 arguments not yet supported")
         end

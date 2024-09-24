@@ -157,11 +157,11 @@ export sigmaSumSigned, sigmaTot, sigmaTotErr, sisterList, size, sizeAll, sizeJet
 export skipEvent, slhaInterface, slhaInterface!, sphericity, spin, spinPart, spinPart!, spinType, stat, state, state!, statistics
 export status, statusAbs, statusCode, statusHepMC, statusJunction, statusNeg, statusPart, statusPart!, statusPos, stopAtN
 export stopScaleSave, stopScaleSave!, storeCandidates, storeHardProcessCandidates, storeWeights, strategy, sub!, subCollisionModel
-export subCollisions, subCollisionsPtr, swapKin, swappedTU, system, tChanFracPow1, tChanFracPow2, tDec, tHat, tMajor, tMinor, tProd
-export table, takeLog, takeSqrt, target, targetModel, tau, tau0, tauPart, tauPart!, theta, thetaHat, thetaMPI, thetaXZ
-export thrust, title, tms, tms!, tmsCut, tmsDefinition, tmsHardNow, tmsHardNowSave, tmsHardNowSave!, tmsListSave, tmsListSave!
-export tmsNow, tmsNowSave, tmsNowSave!, tmsValueNow, tmsValueNow!, tmsValueSave, tmsValueSave!, toCMframe, toSameVframe
-export to_string, translateLHEFString, translateProcessString, trialKin, uHat, undoDecay, unfinishedInput, unifyFrames
+export subCollisions, subCollisionsPtr, subEvent, swapKin, swappedTU, system, tChanFracPow1, tChanFracPow2, tDec, tHat, tMajor
+export tMinor, tProd, table, takeLog, takeSqrt, target, targetModel, tau, tau0, tauPart, tauPart!, theta, thetaHat, thetaMPI
+export thetaXZ, thrust, title, tms, tms!, tmsCut, tmsDefinition, tmsHardNow, tmsHardNowSave, tmsHardNowSave!, tmsListSave
+export tmsListSave!, tmsNow, tmsNowSave, tmsNowSave!, tmsValueNow, tmsValueNow!, tmsValueSave, tmsValueSave!, toCMframe
+export toSameVframe, to_string, translateLHEFString, translateProcessString, trialKin, uHat, undoDecay, unfinishedInput, unifyFrames
 export unorderedASscalePrescip, unorderedASscalePrescipSave, unorderedASscalePrescipSave!, unorderedPDFscalePrescip
 export unorderedPDFscalePrescipSave, unorderedPDFscalePrescipSave!, unorderedScalePrescip, unorderedScalePrescipSave, unorderedScalePrescipSave!
 export update, updateBeamIDs, updateSigma, useExternal, useMirrorWeight, useOwnHardProcess, useOwnHardProcess!
@@ -169,7 +169,7 @@ export useShowerPlugin, useShowerPluginSave, useShowerPluginSave!, usesVincia, v
 export valMax!, valMin, valMin!, valNow, valNow!, value, vertex, vertexBeam, vertexFSR, vertexHadrons, vertexISR, vertexMPI
 export wasGamma2qqbar, weight, weightCKKWL1Save, weightCKKWL1Save!, weightCKKWL2Save, weightCKKWL2Save!, weightCKKWLSave
 export weightCKKWLSave!, weightContainerPtr, weightContainerPtr!, weightDecay, weightDecayFlav, weightFIRSTSave, weightFIRSTSave!
-export weightGammaPDFApprox, weightSum, width, widthChan, widthOpen, widthRescaleFactor, widthStore, word, wordDefault, writeFile, wtSave
-export wtSave!, wvec, wvecDefault, x1, x1pdf, x2, x2pdf, xDec, xErr, xErrProc, xErrProc!, xErrSum, xGamma, xMax, xMaxProc
-export xMaxProc!, xPom, xProd, xSec, xSecProc, xSecProc!, xSecSum, xexp, xf, xfApprox, xfFlux, xfGamma, xfIntegratedTotal, xfMax
-export xfSame, xfSea, xfUpdate, xfVal, y, y!, yDec, yProd, zDec, zProd
+export weightGammaPDFApprox, weightSum, width, widthChan, widthOpen, widthRescaleFactor, widthStore, word, wordDefault, workEvent, writeFile
+export wtSave, wtSave!, wvec, wvecDefault, x1, x1pdf, x2, x2pdf, xDec, xErr, xErrProc, xErrProc!, xErrSum, xGamma, xMax
+export xMaxProc, xMaxProc!, xPom, xProd, xSec, xSecProc, xSecProc!, xSecSum, xexp, xf, xfApprox, xfFlux, xfGamma
+export xfIntegratedTotal, xfMax, xfSame, xfSea, xfUpdate, xfVal, y, y!, yDec, yProd, zDec, zProd

@@ -20,6 +20,8 @@ public:
     static auto make_shared() { return std::shared_ptr<Pythia8::UserHooks>(new Pythia8UserHooks); }
     Pythia8UserHooks() : Pythia8::UserHooks() {}
     virtual ~Pythia8UserHooks() {}
+    void subEvent(const Pythia8::Event& event, bool isHardest = true) { Pythia8::UserHooks::subEvent(event, isHardest); }
+    Pythia8::Event workEvent() const { return Pythia8::UserHooks::workEvent; }
 
     virtual bool initAfterBeams();
     virtual bool canModifySigma();
