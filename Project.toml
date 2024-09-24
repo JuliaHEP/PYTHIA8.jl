@@ -1,0 +1,22 @@
+name = "Pythia8"
+uuid = "ab9774ad-7527-4370-92ef-86b02700ecc9"
+authors = ["Pere Mato <pere.mato@cern.ch>"]
+version = "0.1.0"
+
+[deps]
+CxxWrap = "1f15a43c-97ca-5a2a-ae31-89f07a497df4"
+InteractiveUtils = "b77e0a4c-d291-57a0-90e8-8db25a27a240"
+Libdl = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
+PYTHIA_jll = "47b8ac8e-e87e-59c1-8ebd-407ebead3f7c"
+Revise = "295af30f-e4ad-537b-8983-00126c2a3abe"
+
+[compat]
+CxxWrap = "0.14"
+InteractiveUtils = "1.11.0"
+PYTHIA_jll = "8.312.0"
+Revise = "3.5.18"
+julia = "1.6"
+
+[extras]
+BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"

@@ -1,0 +1,88 @@
+module_name         = "Pythia8"
+export_jl_fname     = "Pythia8-export.jl"
+module_jl_fname     = "Pythia8-generated.jl"
+out_cpp_fname       = "jlPythia8.cxx"
+out_h_fname         = "jlPythia8.h"
+out_cxx_dir         = "cpp"
+out_jl_dir          = "jl"
+
+clang_opts          = ["-v"]
+
+include_dirs        = [ "./cpp", 
+                        "@Pythia8_INCLUDE_DIR@",
+                        "@Julia_INCLUDE_DIRS@",  
+                        "@JlCxx_DIR@/../../../include"]
+
+input               = [ "Pythia8Wrap.h",
+                        "Pythia8/Pythia.h",
+                        "Pythia8/Event.h",
+                        "Pythia8/PartonDistributions.h",
+                        "Pythia8/LesHouches.h",
+                        "Pythia8/ParticleDecays.h",
+                        "Pythia8/TimeShower.h",
+                        "Pythia8/Merging.h",
+                        "Pythia8/MergingHooks.h",
+                        "Pythia8/PartonVertex.h",
+                        "Pythia8/Basics.h",
+                        "Pythia8/UserHooks.h",
+                        "Pythia8/BeamShape.h",
+                        "Pythia8/ResonanceWidths.h",
+                        "Pythia8/ShowerModel.h",
+                        "Pythia8/SpaceShower.h",
+                        "Pythia8/HeavyIons.h",
+                        "Pythia8/HIInfo.h",
+                        "Pythia8/PythiaParallel.h",
+                        "Pythia8/Settings.h",
+                        "Pythia8/Analysis.h",
+                        "Pythia8/SigmaProcess.h",
+                        "Pythia8/PhaseSpace.h"
+                        ]
+
+#                        
+#                        "Pythia8/Analysis.h",
+#                        "Pythia8/Basics.h",
+#                        "Pythia8/BeamParticle.h",
+#                        "Pythia8/BeamSetup.h",
+#                        "Pythia8/FragmentationFlavZpT.h",
+#                        "Pythia8/HadronLevel.h",
+#                        "Pythia8/HadronWidths.h",
+#                        "Pythia8/Info.h",
+#                        "Pythia8/JunctionSplitting.h",
+#                        "Pythia8/Logger.h",
+#                        "Pythia8/SigmaLowEnergy.h",
+
+#                        "Pythia8/PartonLevel.h",
+#                        "Pythia8/ParticleData.h",
+#                        "Pythia8/PartonSystems.h",
+#                        "Pythia8/PartonVertex.h",
+#                        "Pythia8/PhysicsBase.h",
+#                        "Pythia8/ProcessLevel.h",
+#                        "Pythia8/PythiaStdlib.h",
+#                        "Pythia8/ResonanceWidths.h",
+#                        "Pythia8/RHadrons.h",
+#                        "Pythia8/Ropewalk.h",
+#                        "Pythia8/Settings.h",
+#                        "Pythia8/ShowerModel.h",
+#                        "Pythia8/SigmaTotal.h",
+#                        "Pythia8/SimpleSpaceShower.h",
+#                        "Pythia8/SimpleTimeShower.h",
+#                        "Pythia8/SpaceShower.h",
+#                        "Pythia8/StandardModel.h",
+#                        "Pythia8/StringInteractions.h",
+#                        "Pythia8/SusyCouplings.h",
+#                        "Pythia8/SLHAinterface.h",
+#                        "Pythia8/UserHooks.h",
+#                        "Pythia8/Weights.h",
+#                        "Pythia8/VinciaCommon.h",
+
+extra_headers       = ["Pythia8/HIInfo.h", 
+                       "Pythia8/HeavyIons.h",
+                       "Pythia8/SplittingsOnia.h"]
+vetoed_finalizer_classes = [ ]
+export              = "all"
+veto_list           = "Pythia8-veto.h"
+cxx-std             = "c++17"
+inheritances        = [ ]
+export_blacklist    = [ ]
+cxxwrap_version     = "@CxxWrap_VERSION@"
+
