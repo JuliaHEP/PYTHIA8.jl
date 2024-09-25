@@ -1,8 +1,11 @@
-using Documenter
 using Pythia8
+using Documenter
+
+# Workaround for a clash with the Base.:+ function defined in Pythia8.jl
+Base.:+(x::Ptr{Nothing}, y::Int64) = x + UInt64(y)
 
 makedocs(;
-    modules=[Pythia8],
+    modules = [Pythia8],
     format = Documenter.HTML(
         prettyurls = Base.get(ENV, "CI", nothing) == "true",
         repolink="https://github.com/JuliaHEP/Pythia8.jl",
