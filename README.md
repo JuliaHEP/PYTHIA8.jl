@@ -1,5 +1,5 @@
 <a href="https://pythia.org">
-  <img src="docs/src/assets/pythia-logo-b.png" alt="Pythia8" width="100"/>
+  <img src="docs/src/assets/logo.png" alt="Pythia8" width="100"/>
 </a>
 
 [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https:///JuliaHEP.github.io/Pythia8.jl/dev/)
