@@ -1,18 +1,18 @@
-# Julia bindings for Pythia8
+# Julia bindings for PYTHIA
 
 ## Description
 
-Julia bindings for the [Pythia8](https://pythia.org) package used for generating high-energy physics collision events. It facilitates the interface with the Pythia8 client library, by writing Julia code instead of having to write C++ code.
+Julia bindings for the [PYTHIA](https://pythia.org) package used for generating high-energy physics collision events. It facilitates the interface with the Pythia8 client library, by writing Julia code instead of having to write C++ code.
 This package is developed using the [CxxWrap.jl](https://github.com/JuliaInterop/CxxWrap.jl) package to wrap C++ types and functions to Julia. Wrapper C++ code is generated with the help of [WrapIt](https://github.com/grasph/wrapit) tool that uses of the clang library.
 
 The Julia interface has been inspired by the functionality provided by [Pythia Python interface](https://pythia.org//latest-manual/PythonInterface.html).
 
 ## Installation
-The Pythia8.jl package does no require any special installation. Stable releases are registered into the Julia general registry, and therefore can be deployed with the standard `Pkg` Julia package manager. This would bring automatically an installation of Pythia8 binary libraries as artifacts corresponding to the current platform (the so called \_jll packages). Linux and MacOS operating systems with `x86_64`, `powerpc64le` and `aarch64` architectures are supported. 
+The PYTHIA8.jl package does no require any special installation. Stable releases are registered into the Julia general registry, and therefore can be deployed with the standard `Pkg` Julia package manager. This would bring automatically an installation of Pythia8 binary libraries as artifacts corresponding to the current platform (the so called \_jll packages). Linux and MacOS operating systems with `x86_64`, `powerpc64le` and `aarch64` architectures are supported. 
 
 ```julia
 julia> using Pkg
-julia> Pkg.add("Pythia8")
+julia> Pkg.add("PYTHIA8")
 ```
 ## Interface
 Only the classes that provide the everyday functionality of PYTHIA have been wrapped. Additional classes and functionality can be included upon request. This is a summary of the currently provided classes:
@@ -29,8 +29,8 @@ Only the classes that provide the everyday functionality of PYTHIA have been wra
 ## Getting Started
 Have a look at the following trivial interactive session:
 ```Julia
-julia> pythia = Pythia8.Pythia("", false)
-Pythia8.Pythia8!PythiaAllocated(Ptr{Nothing} @0x00000001200d0000)
+julia> pythia = PYTHIA8.Pythia("", false)
+PYTHIA8.Pythia8!PythiaAllocated(Ptr{Nothing} @0x00000001200d0000)
 
 julia> csets = pythia |> settings # which equivalent to csets = settings(pythia)
 CxxRef{Pythia8!Settings}(Ptr{Pythia8!Settings} @0x00000001200d02d0)
@@ -53,17 +53,17 @@ julia> list(csets, "Init:")
  julia> parm(csets, "Beams:eA")
 7000.0
 ```
-Note that class methods are called with the object instance as first argument. In C++ the `parm(...)` method of the `Settings` class would be called as `csets.parm("Beams:eA")` being `csets` an instance of `Settings`, while in Julia it is called as `parm(csets, "Beams:eA")`. Thanks to the Julia multi-dispatch we do not need to prefix the methods with the module name `Pythia8.parm`, even for very common function names such as `list`.
+Note that class methods are called with the object instance as first argument. In C++ the `parm(...)` method of the `Settings` class would be called as `csets.parm("Beams:eA")` being `csets` an instance of `Settings`, while in Julia it is called as `parm(csets, "Beams:eA")`. Thanks to the Julia multi-dispatch we do not need to prefix the methods with the module name `PYTHIA8.parm`, even for very common function names such as `list`.
 
 Also notice that the default printout of any wrapped object is of the form `C++/Julia type(at some address @0xXXXXXX)` like this one: `CxxRef{Pythia8!Settings}(Ptr{Pythia8!Settings} @0x00000001200d02d0)`. In this particular example, the C++ type is a reference to `Pythia8::Settings` and the object is at the memory address `0x00000001200d02d0`.
 
 ## Examples
 Currently the following examples are implemented replicating the equivalent Python ones.
-### [main291.jl](https://github.com/JuliaHEP/Pythia8.jl/blob/main/examples/main291.jl)
+### [main291.jl](https://github.com/JuliaHEP/PYTHIA8.jl/blob/main/examples/main291.jl)
 Simple test program, equivalent to `main101.cc`, but written in Julia. It fits on one slide in a talk. It studies the charged multiplicity distribution at the LHC.
-### [main292.jl](https://github.com/JuliaHEP/Pythia8.jl/blob/main/examples/main292.jl)
+### [main292.jl](https://github.com/JuliaHEP/PYTHIA8.jl/blob/main/examples/main292.jl)
 Simple test program to illustrate the usage of `PythiaParallel` in Julia. The physics case is equivalent to `main291`, but in parallel.
-### [main293.jl](https://github.com/JuliaHEP/Pythia8.jl/blob/main/examples/main293.jl)
+### [main293.jl](https://github.com/JuliaHEP/PYTHIA8.jl/blob/main/examples/main293.jl)
 Example how you can use `UserHooks` to trace pT spectrum through the program, and veto undesirable jet multiplicities. It is based on `main242.cc`.
 
 ## Tests

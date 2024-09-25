@@ -2,17 +2,17 @@
 # Authors: Pere Mato (pere.mato@cern.ch)
 # Keywords: userhooks; jet finding; anti-kT; process veto; python;
 
-using Pythia8
+using PYTHIA8
 
 #---UserHooks (struct and functions)----------------------------------------------------------------
-mutable struct MyHooks <: Pythia8.UserHooks
+mutable struct MyHooks <: PYTHIA8.UserHooks
     # User defined fields (iunitialized in the constructor)
     slowJet::Pythia8!SlowJet
     pTHat::Float64
     # This is needed to place the base class object by the __init__ function
     base
     function MyHooks()
-        this = new(Pythia8.SlowJet(-1, 0.7, 10., 5.), 0.)
+        this = new(PYTHIA8.SlowJet(-1, 0.7, 10., 5.), 0.)
         __init__(this)
     end
 end
@@ -93,16 +93,16 @@ end
 # Put histograms here to make them global, so they can be used both
 # in MyUserHooks and in the main program.
 
-pTtrial   = Pythia8.Hist("trial pT spectrum", 100, 0., 400.)
-pTselect  = Pythia8.Hist("selected pT spectrum (before veto)", 100, 0., 400.)
-pTaccept  = Pythia8.Hist("accepted pT spectrum (after veto)", 100, 0., 400.)
-nPartonsB = Pythia8.Hist("number of partons before veto", 20, -0.5, 19.5)
-nJets     = Pythia8.Hist("number of jets before veto", 20, -0.5, 19.5)
-nPartonsA = Pythia8.Hist("number of partons after veto", 20, -0.5, 19.5)
-nFSRatISR = Pythia8.Hist("number of FSR emissions at first ISR emission", 20, -0.5, 19.5)
+pTtrial   = PYTHIA8.Hist("trial pT spectrum", 100, 0., 400.)
+pTselect  = PYTHIA8.Hist("selected pT spectrum (before veto)", 100, 0., 400.)
+pTaccept  = PYTHIA8.Hist("accepted pT spectrum (after veto)", 100, 0., 400.)
+nPartonsB = PYTHIA8.Hist("number of partons before veto", 20, -0.5, 19.5)
+nJets     = PYTHIA8.Hist("number of jets before veto", 20, -0.5, 19.5)
+nPartonsA = PYTHIA8.Hist("number of partons after veto", 20, -0.5, 19.5)
+nFSRatISR = PYTHIA8.Hist("number of FSR emissions at first ISR emission", 20, -0.5, 19.5)
 
 # Generator.
-pythia = Pythia8.Pythia()
+pythia = PYTHIA8.Pythia()
 
 #  Process selection. No need to study hadron level.
 pythia << "HardQCD:all = on"
@@ -125,7 +125,7 @@ for iEvent in 1:1000
 end
 
 # Statistics. Histograms.
-pythia |> Pythia8.stat
+pythia |> PYTHIA8.stat
 pTtrial |> print
 pTselect |> print
 pTaccept |> print

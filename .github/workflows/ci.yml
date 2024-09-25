@@ -48,7 +48,7 @@ jobs:
         uses: codecov/codecov-action@v4.0.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          slug: JuliaHEP/Pythia8.jl
+          slug: JuliaHEP/PYTHIA8.jl
   docs:
     name: Documentation
     runs-on: ubuntu-latest
@@ -65,8 +65,8 @@ jobs:
       - run: |
           julia --project=docs -e '
             using Documenter: DocMeta, doctest
-            using Pythia8
-            DocMeta.setdocmeta!(Pythia8, :DocTestSetup, :(using Pythia8); recursive=true)
+            using PYTHIA8
+            DocMeta.setdocmeta!(Pythia8, :DocTestSetup, :(using PYTHIA8); recursive=true)
             doctest(Pythia8)'
       - run: julia --project=docs docs/make.jl
         env:

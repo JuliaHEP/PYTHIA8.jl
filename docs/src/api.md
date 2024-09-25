@@ -1,6 +1,6 @@
 # Public Documentation
 
-Documentation for `Pythia8.jl` public interface.
+Documentation for `PYTHIA8.jl` public interface.
 
 ---
 

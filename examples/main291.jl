@@ -2,14 +2,14 @@
 # Authors: Pere Mato (pere.mato@cern.ch)
 # Keywords: parallelism; charged multiplicity; julia;
 
-using Pythia8
+using PYTHIA8
 
-pythia = Pythia8.Pythia()
+pythia = PYTHIA8.Pythia()
 pythia << "Beams:eCM = 8000." << 
           "HardQCD:all = on" << 
           "PhaseSpace:pTHatMin = 20." |> init
 
-mult = Pythia8.Hist("charged multiplicity", 100, -0.5, 799.5)
+mult = PYTHIA8.Hist("charged multiplicity", 100, -0.5, 799.5)
 
 # Begin event loop. Generate event. Skip if error. List first one.
 for iEvent in 1:100
@@ -20,5 +20,5 @@ for iEvent in 1:100
 end
 
 # End of event loop. Statistics. Histogram. Done.
-pythia |> Pythia8.stat
+pythia |> PYTHIA8.stat
 mult |> print

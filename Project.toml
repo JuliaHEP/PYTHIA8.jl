@@ -1,4 +1,4 @@
-name = "Pythia8"
+name = "PYTHIA8"
 uuid = "ab9774ad-7527-4370-92ef-86b02700ecc9"
 authors = ["Pere Mato <pere.mato@cern.ch>"]
 version = "0.1.0"

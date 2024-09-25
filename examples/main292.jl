@@ -2,9 +2,9 @@
 # Authors: Pere Mato (pere.mato@cern.ch)
 # Keywords: basic usage; charged multiplicity; julia;
 
-using Pythia8
+using PYTHIA8
 
-pythia = Pythia8.PythiaParallel()
+pythia = PYTHIA8.PythiaParallel()
 
 # PythiaParallel reads settings the same way as the normal Pythia does.
 # The settings will be copied for each Pythia instance.
@@ -20,7 +20,7 @@ pythia << "Parallelism:numThreads = 4"
 pythia << "Main:numberOfEvents = 10000"
 
 # Define the histogram to fill.
-mult = Pythia8.Hist("charged multiplicity", 100, -0.5, 799.5)
+mult = PYTHIA8.Hist("charged multiplicity", 100, -0.5, 799.5)
 
 # This will create and initialize each underlying Pythia instance.
 function w_init(pythiaNow)::CxxBool
@@ -38,10 +38,10 @@ function analyze(pythiaNow)::Nothing
     fill!(mult, nCharged)
     return
 end
-Pythia8.run(pythia, analyze)
+PYTHIA8.run(pythia, analyze)
 
 # PythiaParallel::stat combines statistics for each Pythia instance.
-pythia |> Pythia8.stat
+pythia |> PYTHIA8.stat
 
 # Output histogram.
 mult |> print

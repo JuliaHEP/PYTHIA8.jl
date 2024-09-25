@@ -1,4 +1,4 @@
-pythia = Pythia8.Pythia("",false)
+pythia = PYTHIA8.Pythia("",false)
 @testset "Basics" begin
     @test checkVersion(pythia)
     

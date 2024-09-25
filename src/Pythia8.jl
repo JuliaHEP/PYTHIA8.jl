@@ -1,4 +1,4 @@
-module Pythia8
+module PYTHIA8
     using PYTHIA_jll
     using CxxWrap
     using Libdl

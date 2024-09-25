@@ -1,7 +1,7 @@
-@testset "Pythia8Examples" begin
+@testset "PYTHIA8Examples" begin
 
     #---change the working directory
-    Base.cd(dirname(dirname(pathof(Pythia8))))
+    Base.cd(dirname(dirname(pathof(PYTHIA8))))
 
     # All examples should be used for testing to ensure that the release is working correctly
     @test Base.run(`julia --project examples/main291.jl`, devnull, devnull).exitcode  == 0
