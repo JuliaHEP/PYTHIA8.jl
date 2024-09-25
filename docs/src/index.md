@@ -29,6 +29,8 @@ Only the classes that provide the everyday functionality of PYTHIA have been wra
 ## Getting Started
 Have a look at the following trivial interactive session:
 ```Julia
+julia> using PYTHIA8
+
 julia> pythia = PYTHIA8.Pythia("", false)
 PYTHIA8.Pythia8!PythiaAllocated(Ptr{Nothing} @0x00000001200d0000)
 
