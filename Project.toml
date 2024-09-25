@@ -8,15 +8,18 @@ CxxWrap = "1f15a43c-97ca-5a2a-ae31-89f07a497df4"
 InteractiveUtils = "b77e0a4c-d291-57a0-90e8-8db25a27a240"
 Libdl = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
 PYTHIA_jll = "47b8ac8e-e87e-59c1-8ebd-407ebead3f7c"
-Revise = "295af30f-e4ad-537b-8983-00126c2a3abe"
+Pythia8_cxxwrap_jll = "2ec6ad34-3a48-58c8-92a7-b3b42157112c"
 
 [compat]
 CxxWrap = "0.14"
-InteractiveUtils = "1.11.0"
+InteractiveUtils = "1.10"
 PYTHIA_jll = "8.312.0"
-Revise = "3.5.18"
+Pythia8_cxxwrap_jll = "0.1.0"
 julia = "1.6"
 
 [extras]
 BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
