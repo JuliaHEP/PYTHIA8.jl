@@ -55,7 +55,7 @@ julia> list(csets, "Init:")
 ```
 Note that class methods are called with the object instance as first argument. In C++ the `parm(...)` method of the `Settings` class would be called as `csets.parm("Beams:eA")` being `csets` an instance of `Settings`, while in Julia it is called as `parm(csets, "Beams:eA")`. Thanks to the Julia multi-dispatch we do not need to prefix the methods with the module name `Pythia8.parm`, even for very common function names such as `list`.
 
-Also notice that the default printout of any wrapped object is the form `C++ type(at some address @0xXXXXXX)` like this one: `CxxRef{Pythia8!Settings}(Ptr{Pythia8!Settings} @0x00000001200d02d0)`. In this particular example the C++ type is a reference to `Pythia8::Settings` and the object is at the memory address `0x00000001200d02d0`.
+Also notice that the default printout of any wrapped object is of the form `C++/Julia type(at some address @0xXXXXXX)` like this one: `CxxRef{Pythia8!Settings}(Ptr{Pythia8!Settings} @0x00000001200d02d0)`. In this particular example, the C++ type is a reference to `Pythia8::Settings` and the object is at the memory address `0x00000001200d02d0`.
 
 ## Examples
 Currently the following examples are implemented replicating the equivalent Python ones.
@@ -67,7 +67,7 @@ Simple test program to illustrate the usage of `PythiaParallel` in Julia. The ph
 Example how you can use `UserHooks` to trace pT spectrum through the program, and veto undesirable jet multiplicities. It is based on `main242.cc`.
 
 ## Tests
-Unit tests can be run with `julia --project=. test/runtests.jl`. It runs in addition all the implemented examples to ensure their correct execution and detect any regression.
+Unit tests can be run with `julia --project=. test/runtests.jl`. It runs in addition all the implemented examples to ensure their correct execution and detection of any regression.
 
 ## Roadmap
 There are a number of issues and problems still to be resolved. We keep track of them in this list:
