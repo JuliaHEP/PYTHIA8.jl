@@ -60,15 +60,14 @@ jobs:
       - run: |
           julia --project=docs -e '
             using Pkg
-            Pkg.rm("Pythia8")
             Pkg.develop(PackageSpec(path=pwd()))
             Pkg.instantiate()'
       - run: |
           julia --project=docs -e '
             using Documenter: DocMeta, doctest
             using PYTHIA8
-            DocMeta.setdocmeta!(Pythia8, :DocTestSetup, :(using PYTHIA8); recursive=true)
-            doctest(Pythia8)'
+            DocMeta.setdocmeta!(PYTHIA8, :DocTestSetup, :(using PYTHIA8); recursive=true)
+            doctest(PYTHIA8)'
       - run: julia --project=docs docs/make.jl
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
