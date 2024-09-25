@@ -60,7 +60,6 @@ jobs:
       - run: |
           julia --project=docs -e '
             using Pkg
-            Pkg.rm("Pythia8")
             Pkg.develop(PackageSpec(path=pwd()))
             Pkg.instantiate()'
       - run: |

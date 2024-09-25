@@ -1,4 +1,4 @@
-# Example main292.jl Julia equivalent of the Pyhton main292.py from the Pythia8 examples directory.
+# Example main292.jl Julia equivalent of the Pyhton main292.py from the PYTHIA examples directory.
 # Authors: Pere Mato (pere.mato@cern.ch)
 # Keywords: basic usage; charged multiplicity; julia;
 

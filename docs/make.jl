@@ -5,7 +5,7 @@ using Documenter
 Base.:+(x::Ptr{Nothing}, y::Int64) = x + UInt64(y)
 
 makedocs(;
-    modules = [Pythia8],
+    modules = [PYTHIA8],
     format = Documenter.HTML(
         prettyurls = Base.get(ENV, "CI", nothing) == "true",
         repolink="https://github.com/JuliaHEP/PYTHIA8.jl",

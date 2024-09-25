@@ -1,4 +1,4 @@
-# Example main291.jl Julia equivalent of the Pyhton main291.py from the Pythia8 examples directory.
+# Example main291.jl Julia equivalent of the Pyhton main291.py from the PYTHIA examples directory.
 # Authors: Pere Mato (pere.mato@cern.ch)
 # Keywords: parallelism; charged multiplicity; julia;
 

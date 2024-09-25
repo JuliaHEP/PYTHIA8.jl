@@ -2,13 +2,13 @@
 
 ## Description
 
-Julia bindings for the [PYTHIA](https://pythia.org) package used for generating high-energy physics collision events. It facilitates the interface with the Pythia8 client library, by writing Julia code instead of having to write C++ code.
+Julia bindings for the [PYTHIA](https://pythia.org) package used for generating high-energy physics collision events. It facilitates the interface with the PYTHIA client library, by writing Julia code instead of having to write C++ code.
 This package is developed using the [CxxWrap.jl](https://github.com/JuliaInterop/CxxWrap.jl) package to wrap C++ types and functions to Julia. Wrapper C++ code is generated with the help of [WrapIt](https://github.com/grasph/wrapit) tool that uses of the clang library.
 
 The Julia interface has been inspired by the functionality provided by [Pythia Python interface](https://pythia.org//latest-manual/PythonInterface.html).
 
 ## Installation
-The PYTHIA8.jl package does no require any special installation. Stable releases are registered into the Julia general registry, and therefore can be deployed with the standard `Pkg` Julia package manager. This would bring automatically an installation of Pythia8 binary libraries as artifacts corresponding to the current platform (the so called \_jll packages). Linux and MacOS operating systems with `x86_64`, `powerpc64le` and `aarch64` architectures are supported. 
+The PYTHIA8.jl package does no require any special installation. Stable releases are registered into the Julia general registry, and therefore can be deployed with the standard `Pkg` Julia package manager. This would bring automatically an installation of PYTHIA binary libraries as artifacts corresponding to the current platform (the so called \_jll packages). Linux and MacOS operating systems with `x86_64`, `powerpc64le` and `aarch64` architectures are supported. 
 
 ```julia
 julia> using Pkg
