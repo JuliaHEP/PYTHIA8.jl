@@ -108,6 +108,12 @@ const hookssignatures = Dict(
     :doSetImpactParameter => (Float64, ()),
     :onEndHadronLevel => (CxxBool, (CxxRef{Pythia8.HadronLevel}, CxxRef{Pythia8.Event}))
 )
+"""
+    __init__(self::UserHooks)
+
+This function initializes the UserHooks object by creating an instance of Pythia8UserHooks 
+and setting the hooks for each method defined by the user.
+"""
 function __init__(self::UserHooks)
     # create an instance of Pythia8UserHooks
     uhooks = Pythia8UserHooks!make_shared()
