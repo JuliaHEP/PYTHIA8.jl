@@ -18,7 +18,7 @@ const HadronLevel = Pythia8!HadronLevel
 
 
 #---CxxWrap Types-----------------------------------------------------------------------------------
-export CxxBool
+export CxxBool, CxxRef, CxxPtr
 
 #---Pythia API functions---------------------------------------------------------------------------
 Base.:<<(pythia::Pythia, s::String) = readString(pythia, s) ? pythia : error("Pythia8: $s")

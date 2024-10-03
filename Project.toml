@@ -12,7 +12,7 @@ Pythia8_cxxwrap_jll = "2ec6ad34-3a48-58c8-92a7-b3b42157112c"
 
 [compat]
 CxxWrap = "0.14"
-InteractiveUtils = "1.10"
+InteractiveUtils = "1.6"
 PYTHIA_jll = "8.312.0"
 Pythia8_cxxwrap_jll = "0.1.0"
 julia = "1.6"
