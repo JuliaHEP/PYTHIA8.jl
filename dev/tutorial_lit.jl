@@ -4,7 +4,7 @@
 # [documentation](https://pythia.org/manuals/pythia8312/Welcome.html) for more details 
 # on the parameters and the physics processes.
 #
-#md # !!! note "Note"
+#md # !!! note "Note that"
 #md #     You can also download this tutorial as a
 #md #     [Jupyter notebook](pythia8_tutorial.ipynb) and a plain
 #md #     [Julia source file](pythia8_tutorial.jl).
@@ -190,5 +190,9 @@ img = plot(n_threads, speedup, xlabel="#threads", ylabel="speedup",
 plot!(n_threads, n_threads, seriestype=:line)
 display(img)
 #md PNG(img) #hide
+
+#md # !!! note "Note that"
+#md #     The plot is generted in the CI node using its 
+#md #     processing cores and may not scale as expected.
 
 
