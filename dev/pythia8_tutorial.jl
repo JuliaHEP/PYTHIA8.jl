@@ -22,7 +22,7 @@ for iEvent in 1:200
     pythia |> next || continue
     # Find number of all final charged particles and fill histogram.
     nCharged = count(p -> isFinal(p) && isCharged(p), pythia |> event)
-    atomic_push!(mult, nCharged)
+    push!(mult, nCharged)
 end
 
 pythia |> PYTHIA8.stat
@@ -42,9 +42,9 @@ pythia_mt << "Parallelism:numThreads = 4";
 
 pythia_mt << "Main:numberOfEvents = 200";
 
-function w_init(pythiaNow)::CxxBool
-    Core.println("Initializing Pythia with index $(mode(pythiaNow |> settings, "Parallelism:index")).")
-    return pythiaNow |> init
+function w_init(pythia)::CxxBool
+    Core.println("Initializing Pythia with index $(mode(pythia |> settings, "Parallelism:index")).")
+    return pythia |> init
 end;
 
 init(pythia_mt, w_init);
@@ -57,7 +57,7 @@ function analyze(pythiaNow)::Nothing
     return
 end
 
-PYTHIA8.run(pythia_mt, analyze)
+PYTHIA8.run(pythia_mt, analyze);
 
 pythia_mt |> PYTHIA8.stat
 
