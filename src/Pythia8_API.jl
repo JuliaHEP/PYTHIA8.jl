@@ -41,7 +41,7 @@ _callbacks = Vector{CxxWrap.CxxWrapCore.SafeCFunction}()
 function init(pythia::PythiaParallel, fun::Function)
     sf = eval(
             quote 
-                @safe_cfunction(getfield(Main, Symbol($fun)), CxxBool, (CxxPtr{Pythia},))
+                @safe_cfunction($fun, CxxBool, (CxxPtr{Pythia},))
             end
     )
     push!(_callbacks, sf)
@@ -50,7 +50,7 @@ end
 function run(pythia::PythiaParallel, fun::Function)
     sf = eval(
             quote 
-                @safe_cfunction(getfield(Main, Symbol($fun)), Nothing, (CxxPtr{Pythia},))
+                @safe_cfunction($fun, Nothing, (CxxPtr{Pythia},))
             end
     )
     push!(_callbacks, sf)
