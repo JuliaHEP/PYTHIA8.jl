@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Tutorial · PYTHIA8.jl</title><meta name="title" content="Tutorial · PYTHIA8.jl"/><meta property="og:title" content="Tutorial · PYTHIA8.jl"/><meta property="twitter:title" content="Tutorial · PYTHIA8.jl"/><meta name="description" content="Documentation for PYTHIA8.jl."/><meta property="og:description" content="Documentation for PYTHIA8.jl."/><meta property="twitter:description" content="Documentation for PYTHIA8.jl."/><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../search_index.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../"><img src="../assets/logo.png" alt="PYTHIA8.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../">PYTHIA8.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../">Introduction</a></li><li class="is-active"><a class="tocitem" href>Tutorial</a><ul class="internal"><li><a class="tocitem" href="#Generate-events-and-plot-the-charged-multiplicity-distribution"><span>Generate events and plot the charged multiplicity distribution</span></a></li><li><a class="tocitem" href="#Multi-threaded-version-of-the-same-example"><span>Multi-threaded version of the same example</span></a></li><li><a class="tocitem" href="#Speed-comparison-between-the-two-versions"><span>Speed comparison between the two versions</span></a></li></ul></li><li><a class="tocitem" href="../api/">Public APIs</a></li><li><a class="tocitem" href="../release_notes/">Release Notes</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>Tutorial</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Tutorial</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/JuliaHEP/PYTHIA8.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/JuliaHEP/PYTHIA8.jl/blob/main/docs/src/tutorial_lit.jl#L" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="PYTHIA8.jl-Tutorial"><a class="docs-heading-anchor" href="#PYTHIA8.jl-Tutorial">PYTHIA8.jl Tutorial</a><a id="PYTHIA8.jl-Tutorial-1"></a><a class="docs-heading-anchor-permalink" href="#PYTHIA8.jl-Tutorial" title="Permalink"></a></h1><p>This turorial demostrates a simple application of PYTHIA8.jl to generate some events and present the results in form of histograms. Please refer to the PYTHIA <a href="https://pythia.org/manuals/pythia8312/Welcome.html">documentation</a> for more details on the parameters and the physics processes.</p><div class="admonition is-info"><header class="admonition-header">Note that</header><div class="admonition-body"><p>You can also download this tutorial as a <a href="../pythia8_tutorial.ipynb">Jupyter notebook</a> and a plain <a href="../pythia8_tutorial.jl">Julia source file</a>.</p></div></div><h4 id="Table-of-contents"><a class="docs-heading-anchor" href="#Table-of-contents">Table of contents</a><a id="Table-of-contents-1"></a><a class="docs-heading-anchor-permalink" href="#Table-of-contents" title="Permalink"></a></h4><ul><li><a href="#Generate-events-and-plot-the-charged-multiplicity-distribution">Generate events and plot the charged multiplicity distribution</a></li><li class="no-marker"><ul><li><a href="#Loading-the-necessary-modules">Loading the necessary modules</a></li><li><a href="#Initialize-PYTHIA">Initialize PYTHIA</a></li><li><a href="#Create-a-1D-histogram">Create a 1D histogram</a></li><li><a href="#Generate-events">Generate events</a></li><li><a href="#Print-the-statistics-and-plot-charged-multiplicity-distribution">Print the statistics and plot charged multiplicity distribution</a></li></ul></li><li><a href="#Multi-threaded-version-of-the-same-example">Multi-threaded version of the same example</a></li><li class="no-marker"><ul><li><a href="#Initialize-Parallel-PYTHIA">Initialize Parallel PYTHIA</a></li><li><a href="#Create-a-1D-histogram-2">Create a 1D histogram</a></li><li><a href="#Generate-events-2">Generate events</a></li><li><a href="#Print-the-statistics-and-plot-charged-multiplicity-distribution-2">Print the statistics and plot charged multiplicity distribution</a></li></ul></li><li><a href="#Speed-comparison-between-the-two-versions">Speed comparison between the two versions</a></li><li class="no-marker"><ul><li><a href="#Single-threaded-version">Single-threaded version</a></li><li><a href="#Multi-threaded-version">Multi-threaded version</a></li><li><a href="#Make-a-plot-of-the-speedup-factor">Make a plot of the speedup factor</a></li></ul></li></ul><h2 id="Generate-events-and-plot-the-charged-multiplicity-distribution"><a class="docs-heading-anchor" href="#Generate-events-and-plot-the-charged-multiplicity-distribution">Generate events and plot the charged multiplicity distribution</a><a id="Generate-events-and-plot-the-charged-multiplicity-distribution-1"></a><a class="docs-heading-anchor-permalink" href="#Generate-events-and-plot-the-charged-multiplicity-distribution" title="Permalink"></a></h2><p>In this example, we will generate 200 events at a center of mass energy of 8000 GeV and plot the charged multiplicity distribution.</p><h3 id="Loading-the-necessary-modules"><a class="docs-heading-anchor" href="#Loading-the-necessary-modules">Loading the necessary modules</a><a id="Loading-the-necessary-modules-1"></a><a class="docs-heading-anchor-permalink" href="#Loading-the-necessary-modules" title="Permalink"></a></h3><ul><li>We will use the <code>PYTHIA8</code> module to run the event generation.</li><li>We will use the <a href="https://moelf.github.io/FHist.jl/stable/"><code>FHist</code></a> module to create the histograms.</li><li>We will use the <a href="https://docs.juliaplots.org/stable/"><code>Plots</code></a> module to plot them.</li></ul><p>If these modules are not installed, you can install them by running the following commands:</p><pre><code class="language-julia hljs">using Pkg
+Pkg.add(&quot;PYTHIA8&quot;)
+Pkg.add(&quot;FHist&quot;)
+Pkg.add(&quot;Plots&quot;)</code></pre><pre><code class="language-julia hljs">using PYTHIA8
+using FHist
+using Plots: plot, plot!, theme</code></pre><p>Define the theme for the plots. See available <a href="https://docs.juliaplots.org/stable/generated/plotthemes/">themes</a> and <a href="https://docs.juliaplots.org/stable/attributes/">attributes</a> in Plots.jl.</p><pre><code class="language-julia hljs">theme(:wong2, frame=:box, grid=false, minorticks=true,
+      guidefontvalign=:top, guidefonthalign=:right,
+      xlims=(:auto, :auto), lw=1.2, lab=&quot;&quot;, colorbar=false)</code></pre><h3 id="Initialize-PYTHIA"><a class="docs-heading-anchor" href="#Initialize-PYTHIA">Initialize PYTHIA</a><a id="Initialize-PYTHIA-1"></a><a class="docs-heading-anchor-permalink" href="#Initialize-PYTHIA" title="Permalink"></a></h3><p>We will initialize PYTHIA with the following settings:</p><ul><li>Center of mass energy of the collision: 8000 GeV</li><li>All hard QCD processes are enabled</li><li>Minimum transverse momentum of the hard process: 20 GeV</li></ul><p>We use the operator <code>&lt;&lt;</code> to set the parameters and the operator <code>|&gt;</code> to pipe to the <code>init</code> function. This added interface is quite ergonomic, however alternatively, we can use the functions directly provided by C++ interface, e.g.,</p><ul><li><code>readString(pythia, &quot;Beams:eCM = 8000.&quot;)</code> or</li><li><code>parm( settings(pythia), &quot;Beams:eCM&quot;, 8000.)</code></li></ul><pre><code class="language-julia hljs">pythia = PYTHIA8.Pythia(&quot;&quot;, false);
+pythia &lt;&lt; &quot;Beams:eCM = 8000.&quot; &lt;&lt;
+          &quot;HardQCD:all = on&quot; &lt;&lt;
+          &quot;PhaseSpace:pTHatMin = 20.&quot;;</code></pre><p>The purpose of the next two lines is to reduce the amount of output during the event generation</p><pre><code class="language-julia hljs">pythia &lt;&lt; &quot;Next:numberShowEvent = 0&quot; &lt;&lt;
+          &quot;Next:numberShowProcess = 0&quot;;</code></pre><p>Initialize the event generation. The <code>init</code> function returns a boolean value. Alternatively, we can use the direct call to <code>init(pythia)</code> function.</p><pre><code class="language-julia hljs">pythia |&gt; init;</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide p+ with p+ at a CM energy of 8.000e+03 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | g g -&gt; g g                                     111 |   1.404e+00 |
+ | g g -&gt; q qbar (uds)                            112 |   1.817e-02 |
+ | q g -&gt; q g                                     113 |   1.011e+00 |
+ | q q(bar)&#39; -&gt; q q(bar)&#39;                         114 |   1.100e-01 |
+ | q qbar -&gt; g g                                  115 |   8.378e-04 |
+ | q qbar -&gt; q&#39; qbar&#39; (uds)                       116 |   3.698e-04 |
+ | g g -&gt; c cbar                                  121 |   5.989e-03 |
+ | q qbar -&gt; c cbar                               122 |   1.225e-04 |
+ | g g -&gt; b bbar                                  123 |   5.398e-03 |
+ | q qbar -&gt; b bbar                               124 |   1.160e-04 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Multiparton Interactions Initialization  ---------*
+ |                                                                  |
+ |                   sigmaNonDiffractive =    51.78 mb              |
+ |                                                                  |
+ |    pT0 =  2.35 gives sigmaInteraction =   258.98 mb: accepted    |
+ |                                                                  |
+ *-------  End PYTHIA Multiparton Interactions Initialization  -----*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------*
+ |                                                                                                                 |
+ | Name                                          |                      Now |      Default         Min         Max |
+ |                                               |                          |                                      |
+ | Beams:eCM                                     |                 8000.000 |    14000.000         0.0             |
+ | HardQCD:all                                   |                       on |          off                         |
+ | Next:numberShowEvent                          |                        0 |            1           0             |
+ | Next:numberShowProcess                        |                        0 |            1           0             |
+ | PhaseSpace:pTHatMin                           |                 20.00000 |          0.0         0.0             |
+ |                                                                                                                 |
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------*
+
+ --------  PYTHIA Particle Data Table (changed only)  ------------------------------------------------------------------------------
+
+      id   name            antiName         spn chg col      m0        mWidth      mMin       mMax       tau0    res dec ext vis wid
+             no onMode   bRatio   meMode     products
+
+ no particle data has been changed from its default value
+
+ --------  End PYTHIA Particle Data Table  -----------------------------------------------------------------------------------------</code></pre><h3 id="Create-a-1D-histogram"><a class="docs-heading-anchor" href="#Create-a-1D-histogram">Create a 1D histogram</a><a id="Create-a-1D-histogram-1"></a><a class="docs-heading-anchor-permalink" href="#Create-a-1D-histogram" title="Permalink"></a></h3><p>We will create a histogram to store the charged multiplicity distribution. The histogram is defined with 25 bins ranging from -0.5 to 499.5. Note that with <code>ranges</code> we need to specify the number of edges (26) and not the number of bins (25)</p><pre><code class="language-julia hljs">mult = Hist1D(binedges=range(-0.5, 499.5, 26));</code></pre><h3 id="Generate-events"><a class="docs-heading-anchor" href="#Generate-events">Generate events</a><a id="Generate-events-1"></a><a class="docs-heading-anchor-permalink" href="#Generate-events" title="Permalink"></a></h3><p>We will generate 200 events and fill the histogram with the number of charged particles making use of the <a href="https://docs.julialang.org/en/v1/base/collections/#Base.count"><code>count</code></a> function. We use the <code>push!</code> function to fill the histogram.</p><pre><code class="language-julia hljs">for iEvent in 1:200
+    pythia |&gt; next || continue
+    # Find number of all final charged particles and fill histogram.
+    nCharged = count(p -&gt; isFinal(p) &amp;&amp; isCharged(p), pythia |&gt; event)
+    push!(mult, nCharged)
+end</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">
+ --------  PYTHIA Info Listing  ----------------------------------------
+
+ Beam A: id =   2212, pz =  4.000e+03, e =  4.000e+03, m =  9.383e-01.
+ Beam B: id =   2212, pz = -4.000e+03, e =  4.000e+03, m =  9.383e-01.
+
+ In 1: id =   21, x =  1.534e-02, pdf =  5.499e+00 at Q2 =  4.987e+02.
+ In 2: id =   21, x =  2.093e-03, pdf =  1.839e+01 at same Q2.
+
+ Subprocess g g -&gt; g g with code 111 is 2 -&gt; 2.
+ It has sHat =  2.054e+03,    tHat = -1.202e+03,    uHat = -8.525e+02,
+       pTHat =  2.233e+01,   m3Hat =  0.000e+00,   m4Hat =  0.000e+00,
+    thetaHat =  1.742e+00,  phiHat =  3.620e-01.
+     alphaEM =  7.695e-03,  alphaS =  1.673e-01    at Q2 =  4.987e+02.
+
+ Impact parameter b =  5.084e-01 gives enhancement factor =  2.369e+00.
+ Max pT scale for MPI =  2.233e+01, ISR =  2.233e+01, FSR =  2.233e+01.
+ Number of MPI =    10, ISR =    31, FSRproc =    82, FSRreson =     0.
+
+ --------  End PYTHIA Info Listing  ------------------------------------</code></pre><h3 id="Print-the-statistics-and-plot-charged-multiplicity-distribution"><a class="docs-heading-anchor" href="#Print-the-statistics-and-plot-charged-multiplicity-distribution">Print the statistics and plot charged multiplicity distribution</a><a id="Print-the-statistics-and-plot-charged-multiplicity-distribution-1"></a><a class="docs-heading-anchor-permalink" href="#Print-the-statistics-and-plot-charged-multiplicity-distribution" title="Permalink"></a></h3><p>Print the generation statistics using the <code>stat</code> function from PYTHIA.</p><pre><code class="language-julia hljs">pythia |&gt; PYTHIA8.stat</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | g g -&gt; g g                                     111 |         802        112        112 |   2.007e-01  1.035e-02 |
+ | g g -&gt; q qbar (uds)                            112 |          10          1          1 |   3.338e-03  3.338e-03 |
+ | q g -&gt; q g                                     113 |         598         77         77 |   1.372e-01  8.658e-03 |
+ | q q(bar)&#39; -&gt; q q(bar)&#39;                         114 |          63          7          7 |   1.614e-02  2.981e-03 |
+ | q qbar -&gt; g g                                  115 |           2          1          1 |   4.818e-04  4.818e-04 |
+ | q qbar -&gt; q&#39; qbar&#39; (uds)                       116 |           1          1          1 |   3.409e-04  3.409e-04 |
+ | g g -&gt; c cbar                                  121 |           3          0          0 |   0.000e+00  0.000e+00 |
+ | q qbar -&gt; c cbar                               122 |           0          0          0 |   0.000e+00  0.000e+00 |
+ | g g -&gt; b bbar                                  123 |           3          1          1 |   8.686e-04  8.686e-04 |
+ | q qbar -&gt; b bbar                               124 |           0          0          0 |   0.000e+00  0.000e+00 |
+ |                                                    |                                   |                        |
+ | sum                                                |        1482        200        200 |   3.592e-01  1.426e-02 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------*
+ |                                                                                                                 |
+ |  times   message                                                                                                |
+ |                                                                                                                 |
+ |      0   no errors or warnings to report                                                                        |
+ |                                                                                                                 |
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------*</code></pre><p>Plot the histogram with the <code>plot</code> function from Plots.jl. We use the <code>stepbins</code> seriestype to plot the histogram as a step plot.</p><pre><code class="language-julia hljs">img = plot(mult, xlabel=&quot;counts&quot;, ylabel=&quot;#particles&quot;,
+           title=&quot;Charged Multiplicity Distribution&quot;, seriestype=:stepbins,
+           c=2, lc=1, fill=0);
+display(img)</code></pre><img src="8c9cf19b.png" alt="Example block output"/><h2 id="Multi-threaded-version-of-the-same-example"><a class="docs-heading-anchor" href="#Multi-threaded-version-of-the-same-example">Multi-threaded version of the same example</a><a id="Multi-threaded-version-of-the-same-example-1"></a><a class="docs-heading-anchor-permalink" href="#Multi-threaded-version-of-the-same-example" title="Permalink"></a></h2><p>In this example we repeat the same example as before but using multi-threading to generate the events faster.</p><h3 id="Initialize-Parallel-PYTHIA"><a class="docs-heading-anchor" href="#Initialize-Parallel-PYTHIA">Initialize Parallel PYTHIA</a><a id="Initialize-Parallel-PYTHIA-1"></a><a class="docs-heading-anchor-permalink" href="#Initialize-Parallel-PYTHIA" title="Permalink"></a></h3><p>Create an instance of <code>PythiaParallel</code> with the same settings as before. The <code>PythiaParallel</code> class is used to generate events concurrently using multiple threads. The settings are copied for each Pythia instance.</p><pre><code class="language-julia hljs">pythia_mt = PYTHIA8.PythiaParallel(&quot;&quot;, false);</code></pre><p>PythiaParallel reads settings the same way as the normal Pythia does.</p><pre><code class="language-julia hljs">pythia_mt &lt;&lt; &quot;Beams:eCM = 8000.&quot; &lt;&lt;
+             &quot;HardQCD:all = on&quot; &lt;&lt;
+             &quot;PhaseSpace:pTHatMin = 20.&quot;;</code></pre><p>The maximum degree of parallelism. If set to 0 (default), the program will use the maximum number of threads supported by the hardware.</p><pre><code class="language-julia hljs">pythia_mt &lt;&lt; &quot;Parallelism:numThreads = 4&quot;;</code></pre><p>This defines the number of events generated by PythiaParallel::run.</p><pre><code class="language-julia hljs">pythia_mt &lt;&lt; &quot;Main:numberOfEvents = 200&quot;;</code></pre><p>The next is a user provided function to initialize each underlying Pythia instance (one per thread). Please note that the function is called concurrently, therefore the use needs to avoid calling thread-unsafe functions. This is the reason we use the <code>Core.println</code> function instead of <code>println</code>.</p><pre><code class="language-julia hljs">function w_init(pythia)::CxxBool
+    Core.println(&quot;Initializing Pythia with index $(mode(pythia |&gt; settings, &quot;Parallelism:index&quot;)).&quot;)
+    return pythia |&gt; init
+end;</code></pre><p>Initialize the event generation. The <code>init</code> function returns a boolean value to indicate the success. The user provided function <code>w_init</code> is called for each thread.</p><pre><code class="language-julia hljs">init(pythia_mt, w_init);</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Initializing Pythia with index 0.
+Initializing Pythia with index 1.
+Initializing Pythia with index 2.
+Initializing Pythia with index 3.</code></pre><h3 id="Create-a-1D-histogram-2"><a class="docs-heading-anchor" href="#Create-a-1D-histogram-2">Create a 1D histogram</a><a class="docs-heading-anchor-permalink" href="#Create-a-1D-histogram-2" title="Permalink"></a></h3><pre><code class="language-julia hljs">mult_mt = Hist1D(binedges=range(-0.5, 499.5, 26));</code></pre><h3 id="Generate-events-2"><a class="docs-heading-anchor" href="#Generate-events-2">Generate events</a><a class="docs-heading-anchor-permalink" href="#Generate-events-2" title="Permalink"></a></h3><p>Define a user function that will be called for each generated event. This function will be called concurrently by the threads. Therefore, we need to use thread-safe functions. Filling the histogram with <code>atomic_push</code> is thread-safe. The function takes a <code>Pythia</code> object as the first argument and returns <code>Nothing</code>.</p><pre><code class="language-julia hljs">function analyze(pythiaNow)::Nothing
+    nCharged = count(p -&gt; isFinal(p) &amp;&amp; isCharged(p), pythiaNow |&gt; event)
+    atomic_push!(mult_mt, nCharged)
+    return
+end</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">analyze (generic function with 1 method)</code></pre><p>Run the event generation. The number of events has been set in the <code>Main:numberOfEvents</code> parameter.</p><pre><code class="language-julia hljs">PYTHIA8.run(pythia_mt, analyze);</code></pre><h3 id="Print-the-statistics-and-plot-charged-multiplicity-distribution-2"><a class="docs-heading-anchor" href="#Print-the-statistics-and-plot-charged-multiplicity-distribution-2">Print the statistics and plot charged multiplicity distribution</a><a class="docs-heading-anchor-permalink" href="#Print-the-statistics-and-plot-charged-multiplicity-distribution-2" title="Permalink"></a></h3><p>Print the statistics using the <code>stat</code> function from PYTHIA8.jl</p><pre><code class="language-julia hljs">pythia_mt |&gt; PYTHIA8.stat</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi"> PYTHIA Warning in PythiaParallel::init: experimental feature, please send feedback to authors@pythia.org
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------*
+ |                                                                                                                 |
+ |  times   message                                                                                                |
+ |                                                                                                                 |
+ |      4   Warning in Pythia::init: be aware that successive calls to init() do not clear previous settings       |
+ |      1   Warning in PythiaParallel::init: experimental feature, please send feedback to authors@pythia.org      |
+ |                                                                                                                 |
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------*</code></pre><p>Plot the result histogram</p><pre><code class="language-julia hljs">img = plot(mult_mt, xlabel=&quot;counts&quot;, ylabel=&quot;#particles&quot;,
+           title=&quot;Charged Multiplicity Distribution (multi-threaded)&quot;, seriestype=:stepbins,
+           c=2, lc=1, fill=0);
+display(img)</code></pre><img src="4faf19ae.png" alt="Example block output"/><h2 id="Speed-comparison-between-the-two-versions"><a class="docs-heading-anchor" href="#Speed-comparison-between-the-two-versions">Speed comparison between the two versions</a><a id="Speed-comparison-between-the-two-versions-1"></a><a class="docs-heading-anchor-permalink" href="#Speed-comparison-between-the-two-versions" title="Permalink"></a></h2><p>We will generate 1000 events and compare the time taken by the two versions.</p><pre><code class="language-julia hljs">empty!(mult);
+empty!(mult_mt);</code></pre><h3 id="Single-threaded-version"><a class="docs-heading-anchor" href="#Single-threaded-version">Single-threaded version</a><a id="Single-threaded-version-1"></a><a class="docs-heading-anchor-permalink" href="#Single-threaded-version" title="Permalink"></a></h3><p>Generate 1000 events and measure the time taken. This is done using the <code>@elapsed</code> macro.</p><pre><code class="language-julia hljs">st_elap = @elapsed begin
+    for iEvent in 1:1000
+        pythia |&gt; next || continue
+        nCharged = count(p -&gt; isFinal(p) &amp;&amp; isCharged(p), pythia |&gt; event)
+        atomic_push!(mult, nCharged)
+    end
+end</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">4.761370205</code></pre><h3 id="Multi-threaded-version"><a class="docs-heading-anchor" href="#Multi-threaded-version">Multi-threaded version</a><a id="Multi-threaded-version-1"></a><a class="docs-heading-anchor-permalink" href="#Multi-threaded-version" title="Permalink"></a></h3><p>Generate 1000 events and measure the time taken. This is done using the <code>@elapsed</code> macro.</p><pre><code class="language-julia hljs">pythia_mt &lt;&lt; &quot;Main:numberOfEvents = 1000&quot;
+mt_elap = @elapsed begin
+    PYTHIA8.run(pythia_mt, analyze)
+end</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">1.97664061</code></pre><p>Print the speedup factor (4 threads)</p><pre><code class="language-julia hljs">println(&quot;Speedup is $(st_elap/mt_elap).&quot;)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Speedup is 2.408819378146845.</code></pre><h3 id="Make-a-plot-of-the-speedup-factor"><a class="docs-heading-anchor" href="#Make-a-plot-of-the-speedup-factor">Make a plot of the speedup factor</a><a id="Make-a-plot-of-the-speedup-factor-1"></a><a class="docs-heading-anchor-permalink" href="#Make-a-plot-of-the-speedup-factor" title="Permalink"></a></h3><p>We will generate events using 1, 2, 4, 8, 16, and 32 threads and plot the speedup factor. The speedup factor is defined as the ratio of the time taken by the single-threaded version to the time taken by the multi-threaded version.</p><pre><code class="language-julia hljs">n_threads = [2^n for n in 0:5]
+speedup = Float64[]
+w_init(pythiaNow)::CxxBool = pythiaNow |&gt; init
+for n_thread in n_threads
+    empty!(mult_mt)
+    _pythia = PYTHIA8.PythiaParallel(&quot;&quot;, false);
+    _pythia &lt;&lt; &quot;Beams:eCM = 8000.&quot; &lt;&lt;
+               &quot;HardQCD:all = on&quot; &lt;&lt;
+               &quot;PhaseSpace:pTHatMin = 20.&quot; &lt;&lt;
+               &quot;Parallelism:numThreads = $n_thread&quot; &lt;&lt;
+               &quot;Main:numberOfEvents = 1000&quot;
+    init(_pythia, w_init)
+
+    elap = @elapsed begin
+        PYTHIA8.run(_pythia, analyze)
+    end
+    push!(speedup, st_elap/elap)
+end;</code></pre><p>Plot the speedup factor vs the number of threads and overlay the line for the ideal scaling.</p><pre><code class="language-julia hljs">img = plot(n_threads, speedup, xlabel=&quot;#threads&quot;, ylabel=&quot;speedup&quot;,
+           title=&quot;Speedup vs #threads (#cores = $(Sys.CPU_THREADS))&quot;,
+           seriestype=:scatter, legend=false,
+           xscale=:log10, yscale=:log10);</code></pre><p>Add a line to the same plot</p><pre><code class="language-julia hljs">plot!(n_threads, n_threads, seriestype=:line)
+display(img)</code></pre><img src="445cb0d1.png" alt="Example block output"/><div class="admonition is-info"><header class="admonition-header">Note that</header><div class="admonition-body"><p>The plot is generated in a CI node using the cores available in the node. The speedup factor may not scale as expected.</p></div></div><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../">« Introduction</a><a class="docs-footer-nextpage" href="../api/">Public APIs »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.7.0 on <span class="colophon-date" title="Thursday 7 November 2024 13:15">Thursday 7 November 2024</span>. Using Julia version 1.11.1.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
