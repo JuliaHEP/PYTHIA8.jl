@@ -11,14 +11,13 @@
 
 
 using PYTHIA8
-using Libdl
 
 #  Let's start by building the shared library
 prefix = ENV["PYTHIA8"]
-Base.run(`c++ -O2 -shared -fPIC -std=c++11 -I$prefix/include -L$prefix/lib -lpythia8 -o main296Lib.so $(@__DIR__)/main296Lib.cc`)
+Base.run(`c++ -O2 -shared -fPIC -std=c++11 -I$prefix/include -Wl,-rpath,$prefix/lib -L$prefix/lib -lpythia8 -o main296Lib.so $(@__DIR__)/main296Lib.cc`)
 
-# Load the shared library
-const lib = Libdl.dlopen("./main296Lib.so")
+# The shared library is now built, and we can define the PythiaCrossSection type
+const lib = "./main296Lib.so"
 
 # The PythiaCrossSection type is the Julia interface to the
 # PythiaCrossSection C++ class defined in main296Lib.cc.
@@ -32,15 +31,15 @@ mutable struct PythiaCrossSection
     modeSigma::Int
     ptr::Ptr{Cvoid}
     function PythiaCrossSection(modeSigma)
-        ptr = @ccall PythiaCrossSection_new(modeSigma::Int32)::Ptr{Cvoid}
+        ptr = @ccall lib.PythiaCrossSection_new(modeSigma::Int32)::Ptr{Cvoid}
         this =  new(modeSigma, ptr)
         finalizer(delete!, this)
     end
 end
-delete!(self::PythiaCrossSection) = @ccall PythiaCrossSection_del(self.ptr::Ptr{Cvoid})::Cvoid
-calc(self::PythiaCrossSection, idA, idB, sqrtS) = @ccall PythiaCrossSection_calc(self.ptr::Ptr{Cvoid}, idA::Int32, idB::Int32, sqrtS::Float64)::Cvoid
-sigmaTot(self::PythiaCrossSection) = @ccall PythiaCrossSection_sigmaTot(self.ptr::Ptr{Cvoid})::Float64
-sigmaEl(self::PythiaCrossSection) = @ccall PythiaCrossSection_sigmaEl(self.ptr::Ptr{Cvoid})::Float64
+delete!(self::PythiaCrossSection) = @ccall lib.PythiaCrossSection_del(self.ptr::Ptr{Cvoid})::Cvoid
+calc(self::PythiaCrossSection, idA, idB, sqrtS) = @ccall lib.PythiaCrossSection_calc(self.ptr::Ptr{Cvoid}, idA::Int32, idB::Int32, sqrtS::Float64)::Cvoid
+sigmaTot(self::PythiaCrossSection) = @ccall lib.PythiaCrossSection_sigmaTot(self.ptr::Ptr{Cvoid})::Float64
+sigmaEl(self::PythiaCrossSection) = @ccall lib.PythiaCrossSection_sigmaEl(self.ptr::Ptr{Cvoid})::Float64
 
 # The PythiaCrossSection C++ class is now accessible from Julia, and can be used as shown below.
 
