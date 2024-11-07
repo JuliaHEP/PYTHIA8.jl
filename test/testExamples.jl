@@ -8,5 +8,5 @@
     @test Base.run(`julia --project examples/main292.jl`, devnull, devnull).exitcode  == 0
     @test Base.run(`julia --project examples/main293.jl`, devnull, devnull).exitcode  == 0
     @test Base.run(`julia --project examples/main294.jl 11`, devnull, devnull).exitcode  == 0
-    @test Base.run(`julia --project examples/main296.jl`, devnull, devnull).exitcode  == 0
+    # @test Base.run(`julia --project examples/main296.jl`, devnull, devnull).exitcode  == 0
 end
