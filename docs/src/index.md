@@ -67,10 +67,10 @@ Simple test program, equivalent to `main101.cc`, but written in Julia. It fits o
 Simple test program to illustrate the usage of `PythiaParallel` in Julia. The physics case is equivalent to `main291`, but in parallel.
 ### [main293.jl](https://github.com/JuliaHEP/PYTHIA8.jl/blob/main/examples/main293.jl)
 Example how you can use `UserHooks` to trace pT spectrum through the program, and veto undesirable jet multiplicities. It is based on `main242.cc`.
+### [main294.jl](https://github.com/JuliaHEP/PYTHIA8.jl/blob/main/examples/main294.jl)
+Simple Julia script which reads and parses the Pythia 8 particle database (XML format), without requiring the Pythia8 Julia bindings.
+### [main296.jl](https://github.com/JuliaHEP/PYTHIA8.jl/blob/main/examples/main296.jl)
+Example of how PYTHIA can be used as a shared library from Julia. The physics case is a study of total cross sections, which are not exposed currently cannot through the normal Julia interface.
 
 ## Tests
 Unit tests can be run with `julia --project=. test/runtests.jl`. It runs in addition all the implemented examples to ensure their correct execution and detection of any regression.
-
-## Roadmap
-There are a number of issues and problems still to be resolved. We keep track of them in this list:
-- implement more examples

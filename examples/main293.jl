@@ -1,4 +1,4 @@
-# Example main293.jl Julia equivalent of the Pyhton main293.py from the PYTHIA examples directory.
+# Example main293.jl Julia equivalent of the Python main293.py from the PYTHIA examples directory.
 # Authors: Pere Mato (pere.mato@cern.ch)
 # Keywords: userhooks; jet finding; anti-kT; process veto; python;
 
