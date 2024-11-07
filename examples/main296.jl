@@ -15,6 +15,9 @@ using PYTHIA8
 #  Let's start by building the shared library
 prefix = ENV["PYTHIA8"]
 Base.run(`c++ -O2 -shared -fPIC -std=c++11 -I$prefix/include -Wl,-rpath,$prefix/lib -L$prefix/lib -lpythia8 -o main296Lib.so $(@__DIR__)/main296Lib.cc`)
+Base.run(`ls -l main296Lib.so`)
+Base.run(`nm main296Lib.so | grep PythiaCrossSection`)
+Base.run(`ldd main296Lib.so`)  
 
 # The shared library is now built, and we can define the PythiaCrossSection type
 const lib = "./main296Lib.so"
