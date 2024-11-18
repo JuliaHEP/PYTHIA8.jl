@@ -1,3 +1,7 @@
+#include <vector>
+#include <string>
+using std::string;  // to avoid confusion in WrapIt generated code!!
+
 #include "Pythia8/Basics.h"
 #include "Pythia8/UserHooks.h"
 namespace Pythia8 {

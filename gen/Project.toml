@@ -1,0 +1,4 @@
+[deps]
+CxxWrap = "1f15a43c-97ca-5a2a-ae31-89f07a497df4"
+PYTHIA_jll = "47b8ac8e-e87e-59c1-8ebd-407ebead3f7c"
+WrapIt = "962878d8-9763-11ee-8c14-fbf60c98afae"

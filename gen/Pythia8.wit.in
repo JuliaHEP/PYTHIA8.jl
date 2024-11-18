@@ -10,8 +10,8 @@ clang_opts          = ["-v"]
 
 include_dirs        = [ "./cpp", 
                         "@Pythia8_INCLUDE_DIR@",
-                        "@Julia_INCLUDE_DIRS@",  
-                        "@JlCxx_DIR@/../../../include"]
+                        "@Julia_INCLUDE_DIR@",  
+                        "@JlCxx_INCLUDE_DIR@"]
 
 input               = [ "Pythia8Wrap.h",
                         "Pythia8/Pythia.h",
@@ -83,6 +83,6 @@ export              = "all"
 veto_list           = "Pythia8-veto.h"
 cxx-std             = "c++17"
 inheritances        = [ ]
-export_blacklist    = [ ]
+export_blacklist    = ["cd"]
 cxxwrap_version     = "@CxxWrap_VERSION@"
 
