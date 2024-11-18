@@ -14,6 +14,7 @@ include_dirs        = [ "./cpp",
                         "@JlCxx_INCLUDE_DIR@"]
 
 input               = [ "Pythia8Wrap.h",
+                        "Pythia8/PythiaStdlib.h",
                         "Pythia8/Pythia.h",
                         "Pythia8/Event.h",
                         "Pythia8/PartonDistributions.h",
