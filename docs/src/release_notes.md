@@ -1,6 +1,13 @@
 
 # Release Notes
 
+## 0.2.1 (18-11-2024)
+### New functionality
+- Adapted `gen/build.jl` to use the WrapIt.jl package instead of a locally installed `wrapit` 
+### Fixes
+- Removed Hist::operator+(double) to avoid [#457](https://github.com/JuliaInterop/CxxWrap.jl/issues/458)
+- Do not export `cd` to avoid warnings  
+
 ## 0.2.0 (07-11-2024)
 ### New functionality
 - Added 2 more new examples: main294.jl and main296.jl

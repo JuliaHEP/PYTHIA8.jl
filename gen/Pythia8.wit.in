@@ -10,10 +10,11 @@ clang_opts          = ["-v"]
 
 include_dirs        = [ "./cpp", 
                         "@Pythia8_INCLUDE_DIR@",
-                        "@Julia_INCLUDE_DIRS@",  
-                        "@JlCxx_DIR@/../../../include"]
+                        "@Julia_INCLUDE_DIR@",  
+                        "@JlCxx_INCLUDE_DIR@"]
 
 input               = [ "Pythia8Wrap.h",
+                        "Pythia8/PythiaStdlib.h",
                         "Pythia8/Pythia.h",
                         "Pythia8/Event.h",
                         "Pythia8/PartonDistributions.h",
@@ -75,7 +76,8 @@ input               = [ "Pythia8Wrap.h",
 #                        "Pythia8/Weights.h",
 #                        "Pythia8/VinciaCommon.h",
 
-extra_headers       = ["Pythia8/HIInfo.h", 
+extra_headers       = ["Pythia8Extra.h",
+                       "Pythia8/HIInfo.h", 
                        "Pythia8/HeavyIons.h",
                        "Pythia8/SplittingsOnia.h"]
 vetoed_finalizer_classes = [ ]
@@ -83,6 +85,6 @@ export              = "all"
 veto_list           = "Pythia8-veto.h"
 cxx-std             = "c++17"
 inheritances        = [ ]
-export_blacklist    = [ ]
+export_blacklist    = ["cd"]
 cxxwrap_version     = "@CxxWrap_VERSION@"
 

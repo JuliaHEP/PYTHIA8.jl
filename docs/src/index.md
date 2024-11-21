@@ -74,3 +74,12 @@ Example of how PYTHIA can be used as a shared library from Julia. The physics ca
 
 ## Tests
 Unit tests can be run with `julia --project=. test/runtests.jl`. It runs in addition all the implemented examples to ensure their correct execution and detection of any regression.
+
+## Re-generating wrapper code
+It is possible to re-generate the wrapper library locally instead of using the registered `Pythia8_cxxwrap_jll` package. This can be useful for adding new classes or functions to the wrapper library. These are the instructions:
+- The configuration file `gen/Pythia8.wit.in` is the input to the automated process. New header files can be added to the input list.
+- The script `gen/build.jl` does the work of generating the code and building the library. The command to execute are:
+  ```
+  julia --project=gen -e 'import Pkg; Pkg.instantiate()'
+  julia --project=gen gen/build.jl
+  ```

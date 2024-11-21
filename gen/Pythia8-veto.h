@@ -16,4 +16,4 @@ Pythia8::MergingHooks::resonances
 Pythia8::PythiaParallel::pythiaHelper!
 Pythia8::SingleSlowJet::idx
 bool Pythia8::SlowJetHook::include(int, const Pythia8::Event &, Pythia8::Vec4 &, double &)
-
+Pythia8::Hist Pythia8::Hist::operator+(double)
