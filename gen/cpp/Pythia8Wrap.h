@@ -1,3 +1,6 @@
+#ifndef Pythia8Wrap_H
+#define Pythia8Wrap_H
+
 #include <vector>
 #include <string>
 using std::string;  // to avoid confusion in WrapIt generated code!!
@@ -216,3 +219,4 @@ private:
     bool (*onEndHadronLevel_f)(void*, Pythia8::HadronLevel&, Pythia8::Event&) = nullptr;
     void *onEndHadronLevel_d = nullptr;
 };
+#endif

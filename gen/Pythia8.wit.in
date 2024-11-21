@@ -76,7 +76,8 @@ input               = [ "Pythia8Wrap.h",
 #                        "Pythia8/Weights.h",
 #                        "Pythia8/VinciaCommon.h",
 
-extra_headers       = ["Pythia8/HIInfo.h", 
+extra_headers       = ["Pythia8Extra.h",
+                       "Pythia8/HIInfo.h", 
                        "Pythia8/HeavyIons.h",
                        "Pythia8/SplittingsOnia.h"]
 vetoed_finalizer_classes = [ ]

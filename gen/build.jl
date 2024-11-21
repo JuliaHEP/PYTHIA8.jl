@@ -1,6 +1,6 @@
 using CxxWrap
 using PYTHIA_jll
-using WrapIt
+#using WrapIt
 
 #---Build the wrapper library----------------------------------------------------------------------
 builddir = joinpath(@__DIR__, "build")
@@ -30,7 +30,10 @@ open(wit, "w") do f
     end
 end
 
-rc = wrapit(wit, force=true, cmake=false, update=updatemode, verbosity=0)
+#rc = wrapit(wit, force=true, cmake=false, update=updatemode, verbosity=1)
+rc = run(`wrapit $wit --force -v 1`).exitcode
+
+
 if !isnothing(rc) && rc != 0
     println(stderr, "Failed to produce wrapper code with the wrapit function. Exited with code ", rc, ".")
     exit(rc)
