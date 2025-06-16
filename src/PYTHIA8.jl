@@ -6,6 +6,7 @@ module PYTHIA8
     # Check whether the wrappers have been build locally otherwise use the binary package Pythia8_cxxwrap_jll
     gendir = normpath(joinpath(@__DIR__, "../gen"))
     if isdir(joinpath(gendir, "build/lib"))
+        println("Using local pythia8 wrapper code from: $gendir")
         include(joinpath(gendir, "jl/src/Pythia8-export.jl"))
         @wrapmodule(()->joinpath(gendir, "build/lib", "libPythia8Wrap.$(Libdl.dlext)"))
     else
