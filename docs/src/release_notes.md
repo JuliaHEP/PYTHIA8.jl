@@ -1,6 +1,10 @@
 
 # Release Notes
 
+## 0.3.0 (29-08-2025)
+### New functionality
+- Upgraded to latest CxxWrap version 0.17.3
+
 ## 0.2.1 (18-11-2024)
 ### New functionality
 - Adapted `gen/build.jl` to use the WrapIt.jl package instead of a locally installed `wrapit` 
