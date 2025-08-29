@@ -1,7 +1,7 @@
 
 # Release Notes
 
-## 0.3.0 (29-08-2025)
+## 0.2.2 (29-08-2025)
 ### New functionality
 - Upgraded to latest CxxWrap version 0.17.3
 
