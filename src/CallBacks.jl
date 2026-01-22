@@ -18,7 +18,7 @@ const spinlock = Base.Threads.SpinLock()
 function make_callback(ctx, fun, rt, args)
     lock(spinlock)
     try
-        i_callback = Symbol(:_internal_callback_, Symbol(typeof(ctx)))
+        i_callback = Symbol(:_internal_callback_, Symbol(typeof(ctx)), :_, Symbol(length(callbacks)+1))
         narg = length(args)
         CONTEXT = typeof(ctx)
         #---create the internal callback function------------------------------------------------------
