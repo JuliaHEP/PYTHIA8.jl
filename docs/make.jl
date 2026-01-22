@@ -2,9 +2,6 @@ using PYTHIA8
 using Documenter
 using Literate
 
-# Workaround for a clash with the Base.:+ function defined in PYTHIA8.jl
-Base.:+(x::Ptr{Nothing}, y::Int64) = x + UInt64(y)
-
 gen_content_dir = joinpath(@__DIR__, "src")
 tutorial_src = joinpath(@__DIR__, "src", "tutorial_lit.jl")
 Literate.markdown(tutorial_src, gen_content_dir, name = "tutorial", documenter = true, credit = true)

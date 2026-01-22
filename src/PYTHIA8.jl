@@ -28,4 +28,8 @@ module PYTHIA8
 
     include("Pythia8_API.jl")
 
+    # Workaround for a clash with the Base.:+ function defined by CxxWrap https://github.com/JuliaInterop/CxxWrap.jl/issues/458
+    Base.:+(x::Ptr{Nothing}, y::Int64) = y > 0 ? x + UInt64(y) : x - UInt64(-y)
+    Base.:-(x::Ptr{Nothing}, y::Int64) = y > 0 ? x - UInt64(y) : x + UInt64(-y)
+
 end # module PYTHIA8
