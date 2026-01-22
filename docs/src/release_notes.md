@@ -1,6 +1,12 @@
 
 # Release Notes
 
+## 0.2.3 (22-01-2026)
+### Fixes
+- #10 - Fails on Julia 1.12.4
+- #9 - Package does not work on Windows
+- #7 - Is the method of -(this::Ptr{Nothing}, f::Int64) necessary for PYTHIA8?
+
 ## 0.2.2 (29-08-2025)
 ### New functionality
 - Upgraded to latest CxxWrap version 0.17.3
