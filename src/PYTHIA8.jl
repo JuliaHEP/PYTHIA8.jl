@@ -11,8 +11,12 @@ module PYTHIA8
         @wrapmodule(()->joinpath(gendir, "build/lib", "libPythia8Wrap.$(Libdl.dlext)"))
     else
         using Pythia8_cxxwrap_jll
-        include(Pythia8_cxxwrap_jll.Pythia8_exports)
-        @wrapmodule(()->Pythia8_cxxwrap_jll.libPythia8Wrap)
+        if Pythia8_cxxwrap_jll.is_available()
+            include(Pythia8_cxxwrap_jll.Pythia8_exports)
+            @wrapmodule(()->Pythia8_cxxwrap_jll.libPythia8Wrap)
+        else
+            error("Pythia8 binaries not available for $(Sys.KERNEL) $(Sys.ARCH)")
+        end
     end
 
     function __init__()
@@ -24,4 +28,4 @@ module PYTHIA8
 
     include("Pythia8_API.jl")
 
-end # module Pythia8
+end # module PYTHIA8
